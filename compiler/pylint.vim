@@ -115,7 +115,7 @@ au CursorMoved <buffer> call s:GetPylintMessage()
 " it does not list the info messages and it lists errors first
 " pylint --rcfile pylint.rc -i y hola.py|grep -e '^[WECY]'|sed -e 's/^W/2 W /' -e 's/^E/1 E /' -e
 " 's/^C/3 C /' |sort -k1,3
-CompilerSet makeprg=(echo\ '[%]';pylint\ --msg-template=\"{msg_id}:{line},{column}:\ {obj}:\ {msg}\"\ '%'\\\|grep\ -e\ \'^[WECR]\'\\\|sed\ -e\ \'s/^E/1\ E\ /\'\ -e\ \'s/^W/2\ W\ /\'\ -e\ \'s/^C/3\ C\ /\'\ -e\ \'s/^R/4\ R\ /\'\ -e\ \'s/:[\.\ _a-zA-Z]*:/:/g\'\ \\\|sort\ -k1,3)
+CompilerSet makeprg=(echo\ '[%]';pylint\ --msg-template=\"{msg_id}:{line},{column}:\ {obj}:\ {msg}\"\ '%'\\\|grep\ -E\ -e\ \'^\([WECR][0-9]\\\|Your\ code\)\'\\\|sed\ -e\ \'s/^E/1\ E\ /\'\ -e\ \'s/^W/2\ W\ /\'\ -e\ \'s/^C/3\ C\ /\'\ -e\ \'s/^R/4\ R\ /\'\ -e\ \'s/:[\.\ _a-zA-Z]*:/:/g\'\ \\\|sort\ -k1,3)
 
 " We could omit end of file-entry, there is only one file
 " %+I... - include code rating information
