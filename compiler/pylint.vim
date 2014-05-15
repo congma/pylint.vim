@@ -1,14 +1,16 @@
 " Vim compiler file for Python
 " Compiler:     Style checking tool for Python
-" Maintainer:   Oleksandr Tymoshenko <gonzo@univ.kiev.ua>
-" Last Change:  2011 August 21
-" Version:      0.7
+" Maintainer:   Cong Ma <cma@pmo.ac.cn>
+" Last Change:  2014 April 15
+" Version:      0.8dev
 " Contributors:
+"     Oleksandr Tymoshenko
 "     Artur Wroblewski
 "     Menno
 "     Jose Blanca
 "     Bogdan Frankovskyi
 "     Oren Held
+"     Cong Ma
 "
 " Installation:
 "   Drop pylint.vim in ~/.vim/compiler directory. Ensure that your PATH
@@ -113,7 +115,7 @@ au CursorMoved <buffer> call s:GetPylintMessage()
 " it does not list the info messages and it lists errors first
 " pylint --rcfile pylint.rc -i y hola.py|grep -e '^[WECY]'|sed -e 's/^W/2 W /' -e 's/^E/1 E /' -e
 " 's/^C/3 C /' |sort -k1,3
-CompilerSet makeprg=(echo\ '[%]';pylint\ -i\ y\ '%'\\\|grep\ -e\ \'^[WECY]\'\\\|sed\ -e\ \'s/^E/1\ E\ /\'\ -e\ \'s/^W/2\ W\ /\'\ -e\ \'s/^C/3\ C\ /\'\ -e\ \'s/:[\.\ _a-zA-Z]*:/:/g\'\ \\\|sort\ -k1,3)
+CompilerSet makeprg=(echo\ '[%]';pylint\ --msg-template=\"{msg_id}:{line},{column}:\ {obj}:\ {msg}\"\ '%'\\\|grep\ -e\ \'^[WECR]\'\\\|sed\ -e\ \'s/^E/1\ E\ /\'\ -e\ \'s/^W/2\ W\ /\'\ -e\ \'s/^C/3\ C\ /\'\ -e\ \'s/^R/4\ R\ /\'\ -e\ \'s/:[\.\ _a-zA-Z]*:/:/g\'\ \\\|sort\ -k1,3)
 
 " We could omit end of file-entry, there is only one file
 " %+I... - include code rating information
@@ -129,6 +131,7 @@ CompilerSet efm=%+P[%f],%*\\d\ %t\ %n:\ %#%l\\,%c:%m,%Z,%+IYour\ code%m,%Z,%-G%.
 "signs definition
 sign define W text=WW texthl=pylint
 sign define C text=CC texthl=pylint
+sign define R text=RR texthl=pylint
 sign define E text=EE texthl=pylint_error
 
 if g:pylint_onwrite
