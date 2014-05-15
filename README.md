@@ -1,27 +1,27 @@
 #pylint.vim
 
+[Pylint](http://www.pylint.org/) integration for the
+[Vim text editor](http://www.vim.org/).
+
 This is a fork of the original
 [`pylint.vim`](http://www.vim.org/scripts/script.php?script_id=891) compiler
-script for the VIM text editor.
-
-Pylint update v1.x broke the original script.  This fork adapts the script to
-the new generation of Pylint.
+script.  Pylint update v1.x broke it, and this fork adapts the
+script to the new generation of Pylint.
 
 ##Installation
 
-Drop pylint.vim in `~/.vim/compiler` directory. Ensure that your `PATH`
-environment variable includes the path to 'pylint' executable.
+Drop `pylint.vim` in `~/.vim/compiler` directory. Ensure that your `PATH`
+environment variable includes the path to `pylint` executable.
 
-Add the following line to the autocmd section of .vimrc
+Add the following line to the autocmd section of `.vimrc`
 
     autocmd FileType python compiler pylint
 
 ##Usage
 
-Pylint is called after a buffer with Python code is saved. QuickFix
-window is opened to show errors, warnings and hints provided by Pylint.
-Code rate calculated by Pylint is displayed at the bottom of the
-window.
+Pylint is called after a buffer with Python code is saved. QuickFix window is
+opened to show errors, warnings and hints provided by Pylint.  Code rate
+calculated by Pylint is displayed at the bottom of the window.
 
 Above is realized with the `:Pylint` command. To disable calling Pylint every
 time a buffer is saved put into `.vimrc` file
@@ -40,8 +40,8 @@ Setting signs for the lines with errors can be enabled with
 
     let g:pylint_signs = 1
 
-Of course, standard `:make` command can be used as in case of every
-other compiler.
+Of course, standard `:make` command can be used as in case of every other
+compiler.
 
 Setting highlights for the lines can be disabled with
 
