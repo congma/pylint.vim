@@ -180,6 +180,9 @@ function! Pylint(writing)
     if g:pylint_inline_highlight
         call PylintHighlight() 
     endif
+
+    redraw!
+
 endfunction
 endif
 
