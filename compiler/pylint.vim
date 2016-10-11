@@ -108,23 +108,13 @@ au CursorHold <buffer> call s:GetPylintMessage()
 au CursorMoved <buffer> call s:GetPylintMessage()
 
 
-" We оhouldиechр filename because pylint truncates .py
+" We should echo filename because pylint truncates .py
 " If someone know better way - let me know :) 
-" CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ %)
-" modified by Jose Blanca
-" it does not list the info messages and it lists errors first
-" pylint --rcfile pylint.rc -i y hola.py|grep -e '^[WECY]'|sed -e 's/^W/2 W /' -e 's/^E/1 E /' -e
-" 's/^C/3 C /' |sort -k1,3
 CompilerSet makeprg=(echo\ '[%]';pylint\ --msg-template=\"{msg_id}:{line},{column}:\ {msg}\"\ '%'\\\|grep\ -E\ -e\ \'^\([WECR][0-9]\\\|Your\ code\)\'\\\|sed\ -e\ \'s/^E/1\ E\ /\'\ -e\ \'s/^W/2\ W\ /\'\ -e\ \'s/^C/3\ C\ /\'\ -e\ \'s/^R/4\ R\ /\'\ \\\|sort)
 
 " We could omit end of file-entry, there is only one file
 " %+I... - include code rating information
 " %-G... - remove all remaining report lines from quickfix buffer
-" the original efm
-"CompilerSet efm=%+P[%f],%t:\ %#%l:%m,%Z,%+IYour\ code%m,%Z,%-G%.%#
-"modified by Jose Blanca
-"version for the sorted and filtered pylint
-"modified by Oren Held - support pylint v0.24.0
 CompilerSet efm=%+P[%f],%*\\d\ %t\ %n:%l\\,%c:%m,%Z,%+IYour\ code%m,%Z,%-G%.%#
 
 ""sings
@@ -330,4 +320,3 @@ if !exists('*s:ClearHighlight')
         let b:cleared = 1
     endfunction
 endif
-
