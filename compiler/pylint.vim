@@ -115,7 +115,7 @@ CompilerSet makeprg=(echo\ '[%]';pylint\ --msg-template=\"{msg_id}:{line},{colum
 " We could omit end of file-entry, there is only one file
 " %+I... - include code rating information
 " %-G... - remove all remaining report lines from quickfix buffer
-CompilerSet efm=%+P[%f],%*\\d\ %t\ %n:%l\\,%c:%m,%Z,%+IYour\ code%m,%Z,%-G%.%#
+CompilerSet efm=%-P[%f],%*\\d\ %t\ %n:%l\\,%c:%m,%Z,%+IYour\ code%m,%Z,%-G%.%#
 
 ""sings
 "signs definition
