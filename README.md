@@ -1,4 +1,4 @@
-#pylint.vim
+## pylint.vim
 
 [Pylint](http://www.pylint.org/) integration for the
 [Vim text editor](http://www.vim.org/).
@@ -8,7 +8,7 @@ This is a fork of the original
 script.  Pylint update v1.x broke it, and this fork adapts the
 script to the new generation of Pylint.
 
-##Installation
+### Installation
 
 Drop `pylint.vim` in `~/.vim/compiler` directory. Ensure that your `PATH`
 environment variable includes the path to `pylint` executable.
@@ -17,7 +17,7 @@ Add the following line to the autocmd section of `.vimrc`
 
     autocmd FileType python compiler pylint
 
-##Usage
+### Usage
 
 Pylint is called after a buffer with Python code is saved. QuickFix window is
 opened to show errors, warnings and hints provided by Pylint.  Code rate
